@@ -6,8 +6,41 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title><%= htmlWebpackPlugin.options.title %></title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+      }
+
+      body {
+        display: grid;
+        grid-template-rows: auto 1fr;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Amaranth", "Source Sans Pro", Helvetica, sans-serif;
+        text-align: center;
+      }
+
+      a {
+        color: var(--primary);
+      }
+
+      ::selection {
+        color: white;
+        background: var(--primary);
+      }
+    </style>
   </head>
   <body>
+    <h1>NAJU Sharepic-Generator</h1>
     <noscript>
       <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
