@@ -28,6 +28,9 @@
     </p> -->
     <p class="last">
       <a download="sharepic.png" class="btn primary" @click="save">Speichern</a>
+      <button type="button" class="btn secondary restart" @click="next">
+        Noch eins machen
+      </button>
     </p>
   </section>
 </template>
@@ -80,8 +83,8 @@ export default {
       let link = e.target;
       let canvas = this.$refs.canvas;
       let data = canvas
-        .toDataURL("image/png")
-        .replace("image/png", "image/octet-stream");
+        .toDataURL("image/jpeg", 0.8)
+        .replace("image/jpeg", "image/octet-stream");
       // data = URL.createObjectURL(data);
       link.setAttribute("href", data);
     }
@@ -118,5 +121,9 @@ section {
 
 .last {
   margin-bottom: 4rem;
+}
+
+.restart {
+  margin-left: 2rem;
 }
 </style>

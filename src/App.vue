@@ -35,7 +35,7 @@ export default {
           this.screen = "AddCaption";
           break;
         case "AddCaption":
-          this.screen = "ExportSharepic";
+          this.screen = "SelectPicture";
           break;
       }
     }
