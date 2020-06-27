@@ -8216,6 +8216,11 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
+typeface-amaranth@^0.0.72:
+  version "0.0.72"
+  resolved "https://registry.yarnpkg.com/typeface-amaranth/-/typeface-amaranth-0.0.72.tgz#478f77e85bef239822d4fd96e3f53f2e9944089e"
+  integrity sha512-Jk6xZlgi75Jrb12PosdVBDxNIgIRxVyvLIaaBiCDlFFwA4JMvnbX/1WRBTbC0/qECDFT01+IjdzgvSof+jLmUQ==
+
 uglify-js@3.4.x:
   version "3.4.10"
   resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-3.4.10.tgz#9ad9563d8eb3acdfb8d38597d2af1d815f6a755f"

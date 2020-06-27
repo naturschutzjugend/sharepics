@@ -12,6 +12,7 @@
 import HelloWorld from "./components/HelloWorld.vue";
 import SelectPicture from "./components/SelectPicture.vue";
 import AddCaption from "./components/AddCaptionCanvas.vue";
+import "typeface-amaranth";
 
 export default {
   name: "App",
