@@ -1,61 +1,65 @@
 <template>
   <section>
-    <p>
+    <div class="canvas">
       <canvas
         ref="canvas"
         :width="canvasSize"
         :height="canvasSize"
         class="preview"
       ></canvas>
-    </p>
+    </div>
 
-    <p class="logo-caption">
-      <textarea
-        id="caption"
-        name="caption"
-        type="text"
-        @keyup="updateCaption"
-      /><br />
-      <label for="caption">Text</label>
-    </p>
-    <p class="settings">
-      <label for="txt-mb">Abstand unten </label>
-      <input
-        type="range"
-        min="1"
-        max="15"
-        name="txt-mb"
-        id="txt-mb"
-        v-model="txtMb"
-        @change="updateCaption()"
-      />
-      <label for="txt-txt-ml">Abstand links </label>
-      <input
-        type="range"
-        min="1"
-        max="15"
-        name="txt-txt-ml"
-        id="txt-txt-ml"
-        v-model="txtMl"
-        @change="updateCaption()"
-      />
-      <label for="txt-gap">Abstand dazwischen </label>
-      <input
-        type="range"
-        min="0"
-        max="3"
-        name="txt-gap"
-        id="txt-gap"
-        v-model="txtGap"
-        @change="updateCaption()"
-      />
-    </p>
-    <p class="last">
-      <a download="sharepic.jpg" class="btn primary" @click="save">Speichern</a>
-      <button type="button" class="btn secondary restart" @click="next">
-        Noch eins machen
-      </button>
-    </p>
+    <div class="inputs">
+      <p class="logo-caption">
+        <textarea
+          id="caption"
+          name="caption"
+          type="text"
+          @keyup="updateCaption"
+        /><br />
+        <label for="caption">Text</label>
+      </p>
+      <p class="settings">
+        <label for="txt-mb">Abstand unten </label>
+        <input
+          type="range"
+          min="1"
+          max="15"
+          name="txt-mb"
+          id="txt-mb"
+          v-model="txtMb"
+          @change="updateCaption()"
+        />
+        <label for="txt-txt-ml">Abstand links </label>
+        <input
+          type="range"
+          min="1"
+          max="15"
+          name="txt-txt-ml"
+          id="txt-txt-ml"
+          v-model="txtMl"
+          @change="updateCaption()"
+        />
+        <label for="txt-gap">Abstand dazwischen </label>
+        <input
+          type="range"
+          min="0"
+          max="3"
+          name="txt-gap"
+          id="txt-gap"
+          v-model="txtGap"
+          @change="updateCaption()"
+        />
+      </p>
+      <p class="last">
+        <a download="sharepic.jpg" class="btn primary" @click="save"
+          >Speichern</a
+        >
+        <button type="button" class="btn secondary restart" @click="next">
+          Noch eins machen
+        </button>
+      </p>
+    </div>
   </section>
 </template>
 
@@ -141,6 +145,11 @@ section {
   display: flex;
   flex-direction: column;
   margin: 3rem 1rem;
+  gap: 2rem;
+
+  @media screen and (min-width: 960px) {
+    flex-direction: row;
+  }
 }
 
 .logo-caption {
@@ -170,5 +179,10 @@ section {
   @media screen and (min-width: 640px) {
     grid-template-columns: 2fr 3fr 2fr 3fr;
   }
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
 }
 </style>
