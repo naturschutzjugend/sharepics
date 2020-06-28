@@ -18,14 +18,38 @@
       /><br />
       <label for="caption">Text</label>
     </p>
-    <!-- <p class="settings">
+    <p class="settings">
       <label for="txt-mb">Abstand unten </label>
-      <input type="text" name="txt-mb" id="txt-mb" v-model="txtMb" />
+      <input
+        type="range"
+        min="1"
+        max="15"
+        name="txt-mb"
+        id="txt-mb"
+        v-model="txtMb"
+        @change="updateCaption()"
+      />
       <label for="txt-txt-ml">Abstand links </label>
-      <input type="text" name="txt-txt-ml" id="txt-txt-ml" v-model="txtMl" />
+      <input
+        type="range"
+        min="1"
+        max="15"
+        name="txt-txt-ml"
+        id="txt-txt-ml"
+        v-model="txtMl"
+        @change="updateCaption()"
+      />
       <label for="txt-gap">Abstand dazwischen </label>
-      <input type="text" name="txt-gap" id="txt-gap" v-model="txtGap" />
-    </p> -->
+      <input
+        type="range"
+        min="0"
+        max="3"
+        name="txt-gap"
+        id="txt-gap"
+        v-model="txtGap"
+        @change="updateCaption()"
+      />
+    </p>
     <p class="last">
       <a download="sharepic.jpg" class="btn primary" @click="save">Speichern</a>
       <button type="button" class="btn secondary restart" @click="next">
@@ -46,11 +70,14 @@ export default {
   data: () => ({
     caption: "",
     canvasSize: 1152,
-    logo: null
+    logo: null,
+    txtMb: 4,
+    txtMl: 3,
+    txtGap: 2
   }),
   methods: {
     updateCaption(e) {
-      this.caption = e ? e.target.value : "";
+      this.caption = e ? e.target.value : this.caption;
 
       let canvas = this.$refs.canvas;
       let ctx = canvas.getContext("2d");
@@ -68,7 +95,7 @@ export default {
       let logoW = targetW * logoRelToW;
       let logoH = logoW / aspect;
       let najuNSizeRelative = (najuNSize / logo.naturalWidth) * logoW;
-      let logoPosX = targetW - logoW - 2 * najuNSizeRelative;
+      let logoPosX = targetW - logoW - 1 * najuNSizeRelative;
       ctx.drawImage(logo, logoPosX, -1, logoW, logoH);
 
       let fontSize = this.canvasSize / 12;
@@ -77,12 +104,17 @@ export default {
       ctx.lineWidth = fontSize / 8;
       ctx.fillStyle = "white";
       let lines = this.caption.split("\n");
+      let grid = fontSize / 4;
       for (let i = 0; i < lines.length; i++) {
         let text = lines[i];
+        let gapHeight = grid * this.txtGap;
         let targetY =
-          targetH - fontSize - (fontSize / 4) * 5 * (lines.length - 1 - i);
-        ctx.strokeText(text, fontSize / 2, targetY);
-        ctx.fillText(text, fontSize / 2, targetY);
+          targetH -
+          this.txtMb * grid -
+          (fontSize + gapHeight) * (lines.length - 1 - i);
+        let targetX = grid * this.txtMl;
+        ctx.strokeText(text, targetX, targetY);
+        ctx.fillText(text, targetX, targetY);
       }
     },
     save(e) {
@@ -108,6 +140,7 @@ export default {
 section {
   display: flex;
   flex-direction: column;
+  margin: 3rem 1rem;
 }
 
 .logo-caption {
@@ -125,11 +158,17 @@ section {
   }
 }
 
-.last {
-  margin-bottom: 4rem;
-}
-
 .restart {
   margin-left: 2rem;
+}
+
+.settings {
+  display: grid;
+  gap: 1rem;
+  text-align: right;
+  grid-template-columns: 2fr 3fr;
+  @media screen and (min-width: 640px) {
+    grid-template-columns: 2fr 3fr 2fr 3fr;
+  }
 }
 </style>
