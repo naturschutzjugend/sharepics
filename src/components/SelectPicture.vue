@@ -32,12 +32,13 @@
           @load="$store.commit('IMAGE_LOADED', $event)"
         />
       </p>
-      <p>
+      <p id="bottom">
         <button type="button" class="btn primary" @click="next">
           Bild verwenden
         </button>
       </p>
     </template>
+    <a class="to-bottom" href="#bottom"></a>
   </section>
 </template>
 
@@ -68,4 +69,32 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.to-bottom {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  display: block;
+  width: 2rem;
+  height: 2rem;
+  background: var(--primary);
+  border-radius: 0.25rem;
+  z-index: 9999;
+
+  &::after {
+    position: absolute;
+    left: 0.55rem;
+    top: 0.35rem;
+    content: " ";
+    width: 0.75rem;
+    height: 0.75rem;
+    border-right: 0.125rem solid white;
+    border-bottom: 0.125rem solid white;
+    transform: rotate(45deg);
+  }
+
+  @media screen and (min-width: 36rem) {
+    display: none;
+  }
+}
+</style>

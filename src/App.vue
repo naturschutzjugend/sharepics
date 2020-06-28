@@ -146,7 +146,7 @@ export default {
 .croppr-container {
   height: 100%;
   width: 100%;
-  max-height: 35rem;
+  // max-height: 35rem;
   max-width: 35rem;
 }
 </style>
