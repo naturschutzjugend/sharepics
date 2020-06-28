@@ -61,13 +61,13 @@ export default {
         image = this.$store.state.image;
       ctx.drawImage(image, x, y, width, height, 0, 0, targetW, targetH);
 
-      const logoScaleFactor = 4;
+      const logoRelToW = 0.25;
       const najuNSize = 25;
       let logo = this.logo;
       let aspect = logo.naturalWidth / logo.naturalHeight;
-      let logoW = targetW / logoScaleFactor;
+      let logoW = targetW * logoRelToW;
       let logoH = logoW / aspect;
-      let najuNSizeRelative = (logoScaleFactor * logo.naturalWidth) / najuNSize;
+      let najuNSizeRelative = (najuNSize / logo.naturalWidth) * logoW;
       let logoPosX = targetW - logoW - 2 * najuNSizeRelative;
       ctx.drawImage(logo, logoPosX, -1, logoW, logoH);
 
