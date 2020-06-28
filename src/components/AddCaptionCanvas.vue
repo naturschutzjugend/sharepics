@@ -27,7 +27,7 @@
       <input type="text" name="txt-gap" id="txt-gap" v-model="txtGap" />
     </p> -->
     <p class="last">
-      <a download="sharepic.png" class="btn primary" @click="save">Speichern</a>
+      <a download="sharepic.jpg" class="btn primary" @click="save">Speichern</a>
       <button type="button" class="btn secondary restart" @click="next">
         Noch eins machen
       </button>
@@ -45,7 +45,7 @@ export default {
   },
   data: () => ({
     caption: "",
-    canvasSize: 768,
+    canvasSize: 1152,
     logo: null
   }),
   methods: {
@@ -61,22 +61,28 @@ export default {
         image = this.$store.state.image;
       ctx.drawImage(image, x, y, width, height, 0, 0, targetW, targetH);
 
+      const logoScaleFactor = 4;
+      const najuNSize = 25;
       let logo = this.logo;
       let aspect = logo.naturalWidth / logo.naturalHeight;
-      let logoW = targetW / 4;
+      let logoW = targetW / logoScaleFactor;
       let logoH = logoW / aspect;
-      ctx.drawImage(logo, targetW - logoW - (8 * 160) / 23, -1, logoW, logoH);
+      let najuNSizeRelative = (logoScaleFactor * logo.naturalWidth) / najuNSize;
+      let logoPosX = targetW - logoW - 2 * najuNSizeRelative;
+      ctx.drawImage(logo, logoPosX, -1, logoW, logoH);
 
-      ctx.font = "64px Amaranth";
+      let fontSize = this.canvasSize / 12;
+      ctx.font = `${fontSize}px Amaranth`;
       ctx.strokeStyle = "black";
-      ctx.lineWidth = 8;
+      ctx.lineWidth = fontSize / 8;
       ctx.fillStyle = "white";
       let lines = this.caption.split("\n");
       for (let i = 0; i < lines.length; i++) {
         let text = lines[i];
-        let targetY = targetH - 64 - (16 + 64) * (lines.length - 1 - i);
-        ctx.strokeText(text, 32, targetY);
-        ctx.fillText(text, 32, targetY);
+        let targetY =
+          targetH - fontSize - (fontSize / 4) * 5 * (lines.length - 1 - i);
+        ctx.strokeText(text, fontSize / 2, targetY);
+        ctx.fillText(text, fontSize / 2, targetY);
       }
     },
     save(e) {

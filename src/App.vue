@@ -88,6 +88,7 @@ export default {
   &.#{$colorname} {
     color: var(--#{$colorname});
     border-color: var(--#{$colorname});
+
     &:hover,
     &:focus {
       background: var(--#{$colorname});
@@ -112,6 +113,7 @@ export default {
   &:focus {
     color: white;
   }
+
   &:focus {
     outline: none;
   }

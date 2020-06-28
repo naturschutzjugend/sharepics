@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="next">
+  <section>
     <input
       type="file"
       class="hidden"
@@ -32,12 +32,17 @@
           @load="$store.commit('IMAGE_LOADED', $event)"
         />
       </p>
-      <p><button type="submit" class="btn primary">Bild verwenden</button></p>
+      <p>
+        <button type="button" class="btn primary" @click="next">
+          Bild verwenden
+        </button>
+      </p>
     </template>
-  </form>
+  </section>
 </template>
 
 <script>
+// TODO: keyboard focus for label button
 import Croppr from "./Croppr";
 
 export default {
