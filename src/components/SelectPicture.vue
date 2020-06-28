@@ -8,7 +8,7 @@
       @change="selectFile"
       accept="image/jpeg,image/png,image/webp"
     />
-    <template v-if="!fileSelected">
+    <template v-if="fileSelected === null">
       <p>Bitte wähle ein Foto.</p>
       <p>
         <label class="btn secondary" for="upload-pic">
@@ -23,7 +23,7 @@
           anderes Foto
         </label>
       </p>
-      <p v-if="fileSelected">
+      <p>
         <Croppr
           :src="fileObj"
           alt="selected image"
@@ -46,14 +46,14 @@
 import Croppr from "./Croppr";
 
 export default {
-  name: "HelloWorld",
+  name: "SelectPicture",
   components: { Croppr },
   data: () => ({
     fileSelected: null
   }),
   computed: {
     fileObj() {
-      return URL.createObjectURL(this.fileSelected);
+      return this.fileSelected && URL.createObjectURL(this.fileSelected);
     }
   },
   methods: {

@@ -67,7 +67,7 @@
 import logoUrl from "../assets/logo-new-top.svg";
 
 export default {
-  name: "HelloWorld",
+  name: "AddCaption",
   props: {
     next: Function
   },

@@ -1,5 +1,5 @@
 <template>
-  <img :src="src" :alt="alt" :class="className" @load="load" />
+  <img v-if="src" :src="src" :alt="alt" :class="className" @load="load" />
 </template>
 
 <script>
@@ -18,10 +18,14 @@ export default {
   },
   methods: {
     load(e) {
-      this.croppr = new Croppr(e.target, {
-        aspectRatio: 1,
-        onCropEnd: val => this.$emit("cropEnd", val)
-      });
+      if (this.croppr === null) {
+        this.croppr = new Croppr(e.target, {
+          aspectRatio: 1,
+          onCropEnd: val => this.$emit("cropEnd", val)
+        });
+      } else {
+        this.croppr.setImage(e.target.src);
+      }
 
       this.$emit("cropEnd", this.croppr.getValue());
       this.$emit("load", e.target);
