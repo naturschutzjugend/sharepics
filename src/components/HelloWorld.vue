@@ -11,8 +11,8 @@
 export default {
   name: "HelloWorld",
   props: {
-    next: Function
-  }
+    next: Function,
+  },
 };
 </script>
 

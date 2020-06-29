@@ -1,22 +1,12 @@
 <template>
   <section>
     <div class="canvas">
-      <canvas
-        ref="canvas"
-        :width="canvasSize"
-        :height="canvasSize"
-        class="preview"
-      ></canvas>
+      <canvas ref="canvas" :width="canvasSize" :height="canvasSize" class="preview"></canvas>
     </div>
 
     <div class="inputs">
       <p class="logo-caption">
-        <textarea
-          id="caption"
-          name="caption"
-          type="text"
-          @keyup="updateCaption"
-        /><br />
+        <textarea id="caption" name="caption" type="text" @keyup="updateCaption" /><br />
         <label for="caption">Text</label>
       </p>
       <p class="settings">
@@ -70,7 +60,7 @@ import { download } from "../util";
 export default {
   name: "AddCaption",
   props: {
-    next: Function
+    next: Function,
   },
   data: () => ({
     caption: "",
@@ -78,7 +68,7 @@ export default {
     logo: null,
     txtMb: 4,
     txtMl: 3,
-    txtGap: 2
+    txtGap: 2,
   }),
   methods: {
     updateCaption(e) {
@@ -87,12 +77,14 @@ export default {
       let canvas = this.$refs.canvas;
       let ctx = canvas.getContext("2d");
 
+      // projekct the cropped background image on the canvas
       let { x, y, width, height } = this.$store.state.cropValues;
       let targetW = this.canvasSize,
         targetH = this.canvasSize,
         image = this.$store.state.image;
       ctx.drawImage(image, x, y, width, height, 0, 0, targetW, targetH);
 
+      // put the logo on the canvas
       const logoRelToW = 0.25;
       const najuNSize = 25;
       let logo = this.logo;
@@ -103,20 +95,20 @@ export default {
       let logoPosX = targetW - logoW - 1 * najuNSizeRelative;
       ctx.drawImage(logo, logoPosX, -1, logoW, logoH);
 
+      // text styles
       let fontSize = this.canvasSize / 12;
       ctx.font = `${fontSize}px Amaranth`;
       ctx.strokeStyle = "black";
       ctx.lineWidth = fontSize / 8;
       ctx.fillStyle = "white";
+
+      // draw text outline and filling
       let lines = this.caption.split("\n");
       let grid = fontSize / 4;
       for (let i = 0; i < lines.length; i++) {
         let text = lines[i];
         let gapHeight = grid * this.txtGap;
-        let targetY =
-          targetH -
-          this.txtMb * grid -
-          (fontSize + gapHeight) * (lines.length - 1 - i);
+        let targetY = targetH - this.txtMb * grid - (fontSize + gapHeight) * (lines.length - 1 - i);
         let targetX = grid * this.txtMl;
         ctx.strokeText(text, targetX, targetY);
         ctx.fillText(text, targetX, targetY);
@@ -130,15 +122,15 @@ export default {
           download(dataUrl, "sharepic.jpg");
         },
         "image/jpeg",
-        0.8
+        0.8,
       );
-    }
+    },
   },
   mounted() {
     this.logo = new Image();
     this.logo.src = logoUrl;
     this.logo.addEventListener("load", () => this.updateCaption());
-  }
+  },
 };
 </script>
 

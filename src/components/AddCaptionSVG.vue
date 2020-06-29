@@ -20,12 +20,7 @@
 
     <p>
       <label for="caption">Text: </label>
-      <input
-        id="caption"
-        name="caption"
-        type="text"
-        @keypress="updateCaption"
-      />
+      <input id="caption" name="caption" type="text" @keypress="updateCaption" />
     </p>
   </section>
 </template>
@@ -34,11 +29,11 @@
 export default {
   name: "HelloWorld",
   props: {
-    next: Function
+    next: Function,
   },
   data: () => ({
     caption: "",
-    canvasSize: 768
+    canvasSize: 768,
   }),
   computed: {
     imageSrc() {
@@ -46,7 +41,7 @@ export default {
     },
     crop() {
       return this.$store.state.cropValues;
-    }
+    },
   },
 
   methods: {
@@ -54,11 +49,11 @@ export default {
       this.caption = e ? e.target.value : "";
       // let canvas = this.$refs.canvas;
       // let ctx = canvas.getContext("2d");
-    }
+    },
   },
   mounted() {
     this.updateCaption();
-  }
+  },
 };
 </script>
 

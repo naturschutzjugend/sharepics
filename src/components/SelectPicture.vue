@@ -50,21 +50,21 @@ export default {
   name: "SelectPicture",
   components: { Croppr },
   data: () => ({
-    fileSelected: null
+    fileSelected: null,
   }),
   computed: {
     fileObj() {
       return this.fileSelected && URL.createObjectURL(this.fileSelected);
-    }
+    },
   },
   methods: {
     selectFile(e) {
       this.fileSelected = e.target.files[0];
-    }
+    },
   },
   props: {
-    next: Function
-  }
+    next: Function,
+  },
 };
 </script>
 

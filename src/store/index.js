@@ -6,7 +6,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     image: null,
-    cropValues: null
+    cropValues: null,
   },
   mutations: {
     SET_CROP_VALUES(state, vals) {
@@ -14,8 +14,8 @@ export default new Vuex.Store({
     },
     IMAGE_LOADED(state, img) {
       state.image = img;
-    }
+    },
   },
   actions: {},
-  modules: {}
+  modules: {},
 });

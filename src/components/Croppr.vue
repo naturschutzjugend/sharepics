@@ -9,12 +9,12 @@ import "croppr/dist/croppr.css";
 export default {
   name: "HelloWorld",
   data: () => ({
-    croppr: null
+    croppr: null,
   }),
   props: {
     alt: String,
     className: String,
-    src: String
+    src: String,
   },
   methods: {
     load(e) {
@@ -25,7 +25,7 @@ export default {
       if (this.croppr === null) {
         this.croppr = new Croppr(e.target, {
           aspectRatio: 1,
-          onCropEnd: val => this.$emit("cropEnd", val)
+          onCropEnd: val => this.$emit("cropEnd", val),
         });
       } else {
         this.croppr.setImage(e.target.src);
@@ -33,7 +33,7 @@ export default {
 
       this.$emit("cropEnd", this.croppr.getValue());
       this.$emit("load", e.target);
-    }
-  }
+    },
+  },
 };
 </script>

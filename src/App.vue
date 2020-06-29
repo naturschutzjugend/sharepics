@@ -18,12 +18,12 @@ export default {
   name: "App",
   data: () => ({
     screen: "HelloWorld",
-    canvas: null
+    canvas: null,
   }),
   components: {
     HelloWorld,
     SelectPicture,
-    AddCaption
+    AddCaption,
   },
   methods: {
     next() {
@@ -38,8 +38,8 @@ export default {
           this.screen = "SelectPicture";
           break;
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
