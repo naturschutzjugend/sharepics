@@ -52,9 +52,9 @@
         />
       </p>
       <p class="last">
-        <a download="sharepic.jpg" class="btn primary" @click="save"
-          >Speichern</a
-        >
+        <button type="button" class="btn primary" @click="save">
+          Speichern
+        </button>
         <button type="button" class="btn secondary restart" @click="next">
           Noch eins machen
         </button>
@@ -65,6 +65,7 @@
 
 <script>
 import logoUrl from "../assets/logo-new-top.svg";
+import { download } from "../util";
 
 export default {
   name: "AddCaption",
@@ -121,14 +122,16 @@ export default {
         ctx.fillText(text, targetX, targetY);
       }
     },
-    save(e) {
-      let link = e.target;
+    save() {
       let canvas = this.$refs.canvas;
-      let data = canvas
-        .toDataURL("image/jpeg", 0.8)
-        .replace("image/jpeg", "image/octet-stream");
-      // data = URL.createObjectURL(data);
-      link.setAttribute("href", data);
+      canvas.toBlob(
+        blob => {
+          let dataUrl = URL.createObjectURL(blob);
+          download(dataUrl, "sharepic.jpg");
+        },
+        "image/jpeg",
+        0.8
+      );
     }
   },
   mounted() {
