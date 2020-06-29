@@ -70,7 +70,18 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+@keyframes fade-bottomlink {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 .to-bottom {
+  opacity: 0;
+  animation: fade-bottomlink 0.5s 1s forwards;
   position: fixed;
   bottom: 1rem;
   right: 1rem;
