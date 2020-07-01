@@ -11,14 +11,13 @@
 <script>
 import HelloWorld from "./components/HelloWorld.vue";
 import SelectPicture from "./components/SelectPicture.vue";
-import AddCaption from "./components/AddCaptionCanvas.vue";
+import AddCaption from "./components/AddCaption.vue";
 import "typeface-amaranth";
 
 export default {
   name: "App",
   data: () => ({
     screen: "HelloWorld",
-    canvas: null,
   }),
   components: {
     HelloWorld,
