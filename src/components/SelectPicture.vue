@@ -49,21 +49,24 @@ import Croppr from "./Croppr";
 export default {
   name: "SelectPicture",
   components: { Croppr },
+  props: {
+    next: Function,
+  },
+
   data: () => ({
     fileSelected: null,
   }),
+
   computed: {
     fileObj() {
       return this.fileSelected && URL.createObjectURL(this.fileSelected);
     },
   },
+
   methods: {
     selectFile(e) {
       this.fileSelected = e.target.files[0];
     },
-  },
-  props: {
-    next: Function,
   },
 };
 </script>

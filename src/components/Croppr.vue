@@ -8,14 +8,16 @@ import "croppr/dist/croppr.css";
 
 export default {
   name: "HelloWorld",
-  data: () => ({
-    croppr: null,
-  }),
   props: {
     alt: String,
     className: String,
     src: String,
   },
+
+  data: () => ({
+    croppr: null,
+  }),
+
   methods: {
     load(e) {
       // when croppr loads for the first time, the img element gets detached.
